@@ -27,7 +27,7 @@ public class AdminController {
 	
 	/**
 	 * @Title: login   
-	 * @Description: ºóÌ¨µÇÂ¼   
+	 * @Description: ï¿½ï¿½Ì¨ï¿½ï¿½Â¼   
 	 * @param: @return      
 	 * @return: String      
 	 * @throws
@@ -38,7 +38,7 @@ public class AdminController {
 	}
 	/**
 	 * @Title: home   
-	 * @Description: ºóÌ¨Ê×Ò³  
+	 * @Description: ï¿½ï¿½Ì¨ï¿½ï¿½Ò³  
 	 * @param: @return      
 	 * @return: String      
 	 * @throws
@@ -49,7 +49,7 @@ public class AdminController {
 	}
 	/**
 	 * @Title: welcome   
-	 * @Description: ºóÌ¨»¶Ó­Ò³Ãæ   
+	 * @Description: ï¿½ï¿½Ì¨ï¿½ï¿½Ó­Ò³ï¿½ï¿½   
 	 * @param: @return      
 	 * @return: String      
 	 * @throws
@@ -60,7 +60,7 @@ public class AdminController {
 	}
 	/**
 	 * @Title: user   
-	 * @Description: ÓÃ»§¹ÜÀí   
+	 * @Description: ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½   
 	 * @param: @return      
 	 * @return: String      
 	 * @throws
@@ -74,7 +74,7 @@ public class AdminController {
 	}
 	/**
 	 * @Title: locked   
-	 * @Description: ½ûÓÃÓÃ»§   
+	 * @Description: ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½   
 	 * @param: @param userId
 	 * @param: @return      
 	 * @return: boolean      
@@ -88,7 +88,7 @@ public class AdminController {
 	}
 	/**
 	 * @Title: unLocked   
-	 * @Description: ÆôÓÃ  
+	 * @Description: ï¿½ï¿½ï¿½ï¿½  
 	 * @param: @param userId
 	 * @param: @return      
 	 * @return: boolean      
@@ -103,7 +103,7 @@ public class AdminController {
 	
 	/**
 	 * @Title: article   
-	 * @Description: ÎÄÕÂ¹ÜÀí     
+	 * @Description: ï¿½ï¿½ï¿½Â¹ï¿½ï¿½ï¿½     
 	 * @param: @param article
 	 * @param: @param model
 	 * @param: @param pageNum
@@ -115,8 +115,8 @@ public class AdminController {
 	@RequestMapping("/article")
 	public String article(Article article,Model model,
 			@RequestParam(value="pageNum",defaultValue="1") int pageNum,@RequestParam(value="pageSize",defaultValue="3") int pageSize) {
-		//ÉèÖÃÎÄÕÂ×´Ì¬
-		article.setStatusIds("0,-1,1");
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+		article.setStatusIds("0,-1,1,3");
 		PageInfo<Article> pageInfo = articleService.getPageInfo(article,pageNum,pageSize);
 		model.addAttribute("pageInfo", pageInfo);
 		List<Channel> channelList = articleService.getChannelList();
@@ -126,7 +126,7 @@ public class AdminController {
 	
 	/**
 	 * @Title: updateArticleStatus   
-	 * @Description: ÐÞ¸ÄÎÄÕÂ×´Ì¬   
+	 * @Description: ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬   
 	 * @param: @param article
 	 * @param: @return      
 	 * @return: boolean      
@@ -139,7 +139,7 @@ public class AdminController {
 	}
 	/**
 	 * @Title: addHot  
-	 * @Description: ÎÄÕÂ¼ÓÈÈ
+	 * @Description: ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½
 	 * @param: @param article
 	 * @param: @return      
 	 * @return: boolean      

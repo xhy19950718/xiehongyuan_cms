@@ -39,6 +39,7 @@
 					<span style="font-size: 24px;">收藏</span>
 					<span style="font-size: 24px;">已收藏</span>
 					<button onclick="tousushow()" class="btn btn-warning">投诉</button>
+					<span>该文章已被投诉${article.tousuCnt}次</span>
 				</div>
 				<div style="font-size: 24">
 					${article.content }

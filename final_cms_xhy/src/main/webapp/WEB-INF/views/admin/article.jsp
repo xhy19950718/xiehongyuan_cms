@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
   	<form class="form-inline" id="queryForm">
 	  <div class="form-group mx-sm-3 mb-2">
-	    <input type="text" name="name" class="form-control" placeholder="请输入文章标题">
+	    <input type="text" name="title" class="form-control" placeholder="请输入文章标题">
 	  </div>
 	  <div class="form-group mx-sm-3 mb-2">
 	     <select id="inputState" class="form-control" id="channelId" name="channelId">
@@ -19,7 +19,7 @@
 	     	</c:forEach>
 	      </select>
 	  </div>
-	  <div class="form-group mx-sm-3 mb-2"  id="status" name="status">
+	  <div class="form-group mx-sm-3 mb-2" >
 	     <select class="form-control" id="status" name="status" >
 	        <option value="">请选择审核状态...</option>
 	        <option value="0" <c:if test="${article.status==0 }">selected="selected"</c:if>>未审核</option>
@@ -41,6 +41,7 @@
       <th scope="col">所属分类</th>
       <th scope="col">是否热点</th>
       <th scope="col">审核状态</th>
+      <th scope="col">投诉次数</th>
       <th scope="col">发布时间</th>
       <th scope="col">操作</th>
     </tr>
@@ -54,12 +55,14 @@
 	      <td>${item.channelName }</td>
 	      <td>${item.categoryName }</td>
 	      <td>${item.hot>0?"是":"否"}</td>
-	      <td>${item.status==1?"已审核":item.status==0?"未审核":"审核未通过"}</td>
+	      <td>${item.status==1?"已审核":item.status==0?"未审核":item.status==3?"禁看":"审核未通过"}</td>
+	      <td>${item.tousuCnt}</td>
 	      <td><fmt:formatDate value="${item.created }" pattern="yyyy-MM-dd HH:mm"/></td>
 	      <td>
 	      	<button type="button" class="btn btn-primary" onclick="check('${item.id}')">审核</button>
 	      	<button type="button" class="btn btn-primary" onclick="addHot('${item.id}')">加热</button>
 	      	<button type="button" class="btn btn-primary" onclick="view('${item.id}')">查看</button>
+	      	<button type="button" class="btn btn-primary" onclick="tonone('${item.id}')">禁看</button>
 	      </td>
 	    </tr>
    	</c:forEach>
@@ -135,6 +138,14 @@
 		$.post("/admin/article/update/status",data,function(res){
 			$('#checkModal').modal('hide');
 			$('.alert').html("审核通过");
+			$('.alert').show();
+			query();
+		});
+	}
+	
+	function tonone(id){
+		$.post("/admin/article/update/status",{id:id,status:3},function(res){
+			$('.alert').html("禁用");
 			$('.alert').show();
 			query();
 		});

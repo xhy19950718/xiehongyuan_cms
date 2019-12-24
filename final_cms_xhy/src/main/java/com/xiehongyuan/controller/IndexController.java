@@ -56,19 +56,26 @@ public class IndexController {
 	@RequestMapping("/{channelId}/{cateId}/{pageNo}.html")
 	public String channel(@PathVariable Integer channelId, Model model,
 			@PathVariable Integer cateId,@PathVariable Integer pageNo) {
-		/** Ƶ�� */
-		List<Channel> channelList = articleService.getChannelList();
-		model.addAttribute("channelList", channelList);
-		/** ���� */
-		List<Category> cateList = articleService.getCateListByChannelId(channelId);
-		model.addAttribute("cateList", cateList);
-		PageInfo<Article> pageInfo =  articleService.getListByChannelIdAndCateId(channelId,cateId,pageNo);
-		model.addAttribute("pageInfo", pageInfo);
-		return "index";
+		try {
+			/** Ƶ�� */
+			List<Channel> channelList = articleService.getChannelList();
+			model.addAttribute("channelList", channelList);
+			/** ���� */
+			List<Category> cateList = articleService.getCateListByChannelId(channelId);
+			model.addAttribute("cateList", cateList);
+			PageInfo<Article> pageInfo =  articleService.getListByChannelIdAndCateId(channelId,cateId,pageNo);
+			model.addAttribute("pageInfo", pageInfo);
+			return "index";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "page/404";
+		}
+		
 	}
 	
 	@RequestMapping("article/{id}.html")
 	public String articleDetail(@PathVariable Integer id,Model model) {
+		try {
 		/** ��ѯ���� **/
 		Article article = articleService.getById(id);
 		model.addAttribute("article", article);
@@ -78,6 +85,10 @@ public class IndexController {
 		/** ��ѯ������� **/
 		List<Article> articleList = articleService.getListByChannelId(article.getChannelId(),id,10);
 		model.addAttribute("articleList", articleList);
-		return "article/detail";
+		return "article/detail";}
+		 catch (Exception e) {
+				// TODO: handle exception
+				return "common/404";
+			}
 	}
 }

@@ -17,18 +17,23 @@
 	<!-- 导航 -->
 	<nav class="nav justify-content-start" style="background-color: #222;">
 		<a class="nav-link navbar-brand" href="#">
-			<img src="https://v4.bootcss.com/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+			<img src="/public/img/log.png" width="100" height="50" alt="">
 		</a>
+		
+		
 		<c:if test="${USER_SESSION_ID!=null }">
-			<img src="${USER_SESSION_ID.headming }"  width="30" height="30">
-			<a class="nav-link" href="/user/center">发文</a> 
-			<a class="nav-link" href="/user/center">个人中心</a> 
-			<a class="nav-link" href="javascript:;">${USER_SESSION_ID.nickname }</a>
-			<a class="nav-link" href="/user/logout">退出</a>
+		<div style="margin-left: 60%;">
+			<img src="${USER_SESSION_ID.headming }"  width="50" height="50">
+			<a class="nav-link" style="display:inline;" href="/user/center">发文</a> 
+			<a class="nav-link" style="display:inline;" href="/user/center">个人中心</a> 
+			<a class="nav-link" style="display:inline;" href="javascript:;">${USER_SESSION_ID.nickname }</a>
+			<a class="nav-link" style="display:inline;" href="/user/logout">退出</a>
+		</div>
 		</c:if>
 		<c:if test="${USER_SESSION_ID==null }">
-			<a class="nav-link" href="/user/login">登录</a>
+			<a class="nav-link" href="/user/login" style="margin-left:75%;">登录</a>
 		</c:if>
+	
 	</nav>
 	
 	<!-- 左侧导航栏 -->
