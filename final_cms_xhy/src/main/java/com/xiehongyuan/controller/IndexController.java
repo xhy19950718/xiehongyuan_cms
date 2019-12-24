@@ -35,15 +35,15 @@ public class IndexController {
 	
 	@RequestMapping(value="/hot/{pageNum}.html")
 	public String index(@PathVariable Integer pageNum, Model model) {
-		/** Ƶ�� */
+		
 		List<Channel> channelList = articleService.getChannelList();
 		model.addAttribute("channelList", channelList);
-		/** �ֲ�ͼ */
+		
 		List<Slide> slideList = slideService.getAll();
 		model.addAttribute("slideList", slideList);
 		List<Article> newArticleList = articleService.getNewList(6);
 		model.addAttribute("newArticleList", newArticleList);
-		/** �ȵ����� **/
+		
 		if(pageNum==null) {
 			pageNum=1;
 		}
@@ -57,10 +57,10 @@ public class IndexController {
 	public String channel(@PathVariable Integer channelId, Model model,
 			@PathVariable Integer cateId,@PathVariable Integer pageNo) {
 		try {
-			/** Ƶ�� */
+			
 			List<Channel> channelList = articleService.getChannelList();
 			model.addAttribute("channelList", channelList);
-			/** ���� */
+			
 			List<Category> cateList = articleService.getCateListByChannelId(channelId);
 			model.addAttribute("cateList", cateList);
 			PageInfo<Article> pageInfo =  articleService.getListByChannelIdAndCateId(channelId,cateId,pageNo);
